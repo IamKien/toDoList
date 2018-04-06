@@ -6,8 +6,6 @@ var container = document.getElementById("container");
 let toDoList = [];
 
 
-
-
 function showList(){
   container.innerHTML = "";
   toDoList.forEach((value, index) => {
