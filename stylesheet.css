@@ -100,7 +100,7 @@ h1 {
 }
 
 .checked{
-  
+  text-decoration: line-through;
   color: pink;
 }
 

@@ -1,17 +1,19 @@
 var input = document.getElementById('inputToDo');
 var container = document.getElementById("container");
 
-
 //get the input and add it the main_container
 
-var toDoList = [];
+let toDoList = [];
+
+
+
 
 function showList(){
   container.innerHTML = "";
   toDoList.forEach((value, index) => {
     var li = document.createElement("div");
     li.innerHTML = `
-      <span onclick="checked(${index})">${value}</span>
+      <span id="${index}" onclick="checked(${index})">${value}</span>
       <i onclick="deleteTodo(${index})" class="iconclick fa fa-trash"></i>
       <i onclick="editTodo(${index})" class="iconclick fa fa-edit"></i>
     `;
@@ -21,9 +23,12 @@ function showList(){
 
 }
 function checked(index){
-  if(typeof toDoList[index] === 'string'){
-    toDoList.classList.toggle("checked");
-  }
+  document.getElementById(index).classList.toggle("checked");
+//   document.getElementById("check"); Classlist can only be applied to Element
+//   toDoList[index].classList.toggle("checked");//won't worl since its not an element
+
+// var span = document.getElementById("check"); // Will only work if I cane loop
+// span.classList.toggle("checked");// through it and use index to reference each one
 }
 
 function addButton(){
@@ -35,6 +40,28 @@ function addButton(){
     showList();
     input.value = "";
   }
-  //if so alert
-  //else append li to the
 }
+
+function deleteTodo(index){
+  toDoList.splice(index, 1);
+  showList();
+}
+
+function editTodo(index){
+  var edit = prompt("Edit This");
+  toDoList[index] = edit;
+  showList();
+}
+
+var search = document.getElementById("search");
+search.addEventListener("keypress", function(e){
+  if(e.keyCode === 13){
+  var searchText = search.value.toLowerCase();
+  var find = toDoList.find(word => word.toLowerCase().includes(searchText));
+      if(find){
+       alert(find);
+     } else{
+       alert("Not Found");
+     }
+  }
+});
