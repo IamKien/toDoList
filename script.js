@@ -3,12 +3,27 @@ var container = document.getElementById("container");
 
 //get the input and add it the main_container
 
-let toDoList = [];
 
+
+//=========================================
+//Storage
+
+function get(){
+  if (localStorage.todos){
+    return JSON.parse(localStorage.todos);
+  } else{
+    localStorage.todos = "[]";
+    return [];
+  }
+};
+
+function set(todos){
+  localStorage.todos = JSON.stringify(todos);
+}
 
 function showList(){
   container.innerHTML = "";
-  toDoList.forEach((value, index) => {
+  get().forEach((value, index) => {
     var li = document.createElement("div");
     li.innerHTML = `
       <span id="${index}" onclick="checked(${index})">${value}</span>
@@ -31,23 +46,30 @@ function checked(index){
 
 function addButton(){
   //check and see if the input is blank
+  const todos = get();
+
   if(input.value === ""){
     input.placeholder = "Please enter something";
   } else{
-    toDoList.push(input.value);
+    todos.push(input.value);
+    set(todos);
     showList();
     input.value = "";
   }
 }
 
 function deleteTodo(index){
-  toDoList.splice(index, 1);
+  const todos = get();
+  todos.splice(index, 1);
+  set(todos);
   showList();
 }
 
 function editTodo(index){
+  const todos = get();
   var edit = prompt("Edit This");
-  toDoList[index] = edit;
+  todos[index] = edit;
+  set(todos);
   showList();
 }
 
