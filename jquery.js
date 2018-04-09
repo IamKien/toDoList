@@ -1,5 +1,10 @@
-var input = document.getElementById('inputToDo');
-var container = document.getElementById("container");
+// var input = document.getElementById('inputToDo');
+// var container = document.getElementById("container");
+
+$("document").ready(function() {
+  const input = $("#inputToDo");
+  const container = $("#container");
+});
 
 //get the input and add it the main_container
 
@@ -37,14 +42,24 @@ function showList(){
   });
 
 }
-function checked(index){
-  document.getElementById(index).classList.toggle("checked");
-//   document.getElementById("check"); Classlist can only be applied to Element
-//   toDoList[index].classList.toggle("checked");//won't worl since its not an element
+// function checked(index){
+//   document.getElementById(index).classList.toggle("checked");
+// //   document.getElementById("check"); Classlist can only be applied to Element
+// //   toDoList[index].classList.toggle("checked");//won't worl since its not an element
+//
+// // var span = document.getElementById("check"); // Will only work if I cane loop
+// // span.classList.toggle("checked");// through it and use index to reference each one
+// }
 
-// var span = document.getElementById("check"); // Will only work if I cane loop
-// span.classList.toggle("checked");// through it and use index to reference each one
-}
+// Checked function writen in jQuery
+$(document).ready(function(){
+    $(".listClass").click(function(){
+        $(this).toggleClass("checked");
+        
+    });
+});
+
+
 
 function addButton(){
   //check and see if the input is blank

@@ -3,14 +3,13 @@ html{
   height: 100%;
 }
 
-
 body{
   margin: 0;
   height: 100%;
   overflow: auto;
 }
 
-h1 {
+#header-container h1 {
   margin: 0;
   padding: 0;
 }
@@ -19,10 +18,7 @@ h1 {
   font-size: 50px;
   color: white;
   vertical-align: middle;
-
-
 }
-
 
 #header-container{
   width: 100%;
@@ -31,7 +27,6 @@ h1 {
   background-color: #68110E;
   text-align: center;
   vertical-align: middle;
-
 }
 
 #main_container{
@@ -46,8 +41,6 @@ h1 {
 .inputContainer{
   text-align: center;
   padding: 10px;
-
-
 }
 
 #inputToDo{
@@ -65,14 +58,13 @@ h1 {
 }
 
 #addButton:hover{
-  background-color: blue;
+  color: black;
   cursor: pointer;
 }
 
 .searchContainer{
   text-align: center;
   margin-top: 10px;
-
 }
 
 #search{
@@ -96,7 +88,6 @@ h1 {
   margin: 10px;
   background: #A9B2C3;
   color: black;
-
 }
 
 .checked{
@@ -108,7 +99,48 @@ h1 {
   float: right;
 }
 
+span:hover{
+  color: white;
+}
+
 .iconclick:hover{
-  background-color: blue;
+  color: white;
   cursor: pointer;
+}
+.menu{
+  width: 100%;
+  height:40px;
+  font-size: 30px;
+  background-color: #68110E;
+  text-align: center;
+}
+
+#page{
+  text-align: center;
+  font-size: 3em;
+}
+
+a:hover{
+  color: black;
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 100%;
+}
+
+.menu ul{
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li{
+  display: inline;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
 }
