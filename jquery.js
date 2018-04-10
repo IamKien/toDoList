@@ -1,39 +1,38 @@
-var input = document.getElementById('inputToDo');
+var input = document.getElementById("inputToDo");
 var container = document.getElementById("container");
-
 
 //=========================================
 //Storage
 
 showList();
 
-function get(){
-  if (localStorage.todos){
+function get() {
+  if (localStorage.todos) {
     return JSON.parse(localStorage.todos);
-  } else{
+  } else {
     localStorage.todos = "[]";
     return [];
   }
-};
+}
 
-function set(todos){
+function set(todos) {
   localStorage.todos = JSON.stringify(todos);
 }
 
-function showList(){
+function showList() {
   container.innerHTML = "";
   get().forEach((value, index) => {
     var li = document.createElement("div");
     li.id = index;
+    li.className = "list";
     li.innerHTML = `
-      <span id="${index}" onclick="checked(${index})">${value}</span>
+      <span id="${index}" >${value}</span>
       <i  id="delete" class="iconclick fa fa-trash"></i>
       <i onclick="editTodo(${index})" class="iconclick fa fa-edit"></i>
     `;
     li.classList.add("listClass");
     container.appendChild(li);
   });
-
 }
 // function checked(index){
 //   document.getElementById(index).classList.toggle("checked");
@@ -45,21 +44,19 @@ function showList(){
 // }
 
 // Checked function writen in jQuery---------------
-$(document).ready(function(){
-    $(".listClass").click(function(){
-        $(this).toggleClass("checked");
-    });
+$(document).ready(function() {
+  $(".listClass").click(function() {
+    $(this).toggleClass("checked");
+  });
 });
 
-
-
-function addButton(){
+function addButton() {
   //check and see if the input is blank
   const todos = get();
 
-  if(input.value === ""){
+  if (input.value === "") {
     input.placeholder = "Please enter something";
-  } else{
+  } else {
     todos.push(input.value);
     set(todos);
     showList();
@@ -67,21 +64,21 @@ function addButton(){
   }
 }
 
-
-function deleteTodo(index){
+function deleteTodo(index) {
   const todos = get();
   todos.splice(index, 1);
   set(todos);
   showList();
 }
 
-$("i").click(function(){
-    $("#li").fadeOut();
-    $("#li").fadeOut("slow");
-    $("#li").fadeOut(3000);
+$(".list").click(function() {
+  // console.log(event.target.id);
+  $(`#${event.target.id}`).fadeOut();
+  $(`#${event.target.id}`).fadeOut("slow");
+  $(`#${event.target.id}`).fadeOut(3000);
 });
 
-function editTodo(index){
+function editTodo(index) {
   const todos = get();
   var edit = prompt("Edit This");
   todos[index] = edit;
@@ -90,14 +87,14 @@ function editTodo(index){
 }
 
 var search = document.getElementById("search");
-search.addEventListener("keypress", function(e){
-  if(e.keyCode === 13){
-  var searchText = search.value.toLowerCase();
-  var find = get().find(word => word.toLowerCase().includes(searchText));
-      if(find){
-       alert(find);
-     } else{
-       alert("Not Found");
-     }
+search.addEventListener("keypress", function(e) {
+  if (e.keyCode === 13) {
+    var searchText = search.value.toLowerCase();
+    var find = get().find(word => word.toLowerCase().includes(searchText));
+    if (find) {
+      alert(find);
+    } else {
+      alert("Not Found");
+    }
   }
 });
