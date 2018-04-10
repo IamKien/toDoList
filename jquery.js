@@ -1,13 +1,5 @@
-// var input = document.getElementById('inputToDo');
-// var container = document.getElementById("container");
-
-$("document").ready(function() {
-  const input = $("#inputToDo");
-  const container = $("#container");
-});
-
-//get the input and add it the main_container
-
+var input = document.getElementById('inputToDo');
+var container = document.getElementById("container");
 
 
 //=========================================
@@ -32,9 +24,10 @@ function showList(){
   container.innerHTML = "";
   get().forEach((value, index) => {
     var li = document.createElement("div");
+    li.id = index;
     li.innerHTML = `
       <span id="${index}" onclick="checked(${index})">${value}</span>
-      <i onclick="deleteTodo(${index})" class="iconclick fa fa-trash"></i>
+      <i  id="delete" class="iconclick fa fa-trash"></i>
       <i onclick="editTodo(${index})" class="iconclick fa fa-edit"></i>
     `;
     li.classList.add("listClass");
@@ -51,11 +44,10 @@ function showList(){
 // // span.classList.toggle("checked");// through it and use index to reference each one
 // }
 
-// Checked function writen in jQuery
+// Checked function writen in jQuery---------------
 $(document).ready(function(){
     $(".listClass").click(function(){
         $(this).toggleClass("checked");
-        
     });
 });
 
@@ -75,12 +67,19 @@ function addButton(){
   }
 }
 
+
 function deleteTodo(index){
   const todos = get();
   todos.splice(index, 1);
   set(todos);
   showList();
 }
+
+$("i").click(function(){
+    $("#li").fadeOut();
+    $("#li").fadeOut("slow");
+    $("#li").fadeOut(3000);
+});
 
 function editTodo(index){
   const todos = get();
