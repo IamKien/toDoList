@@ -25,11 +25,13 @@ function showList(){
   get().forEach((value, index) => {
     var li = document.createElement("div");
     li.id = index;
+    li.className = "list";
     li.innerHTML = `
       <span id="${index}" onclick="checked(${index})">${value}</span>
-      <i  id="delete" class="iconclick fa fa-trash"></i>
+      <i onclick="deleteTodo(${index})" class="iconclick fa fa-trash"></i>
       <i onclick="editTodo(${index})" class="iconclick fa fa-edit"></i>
     `;
+
     li.classList.add("listClass");
     container.appendChild(li);
   });
@@ -70,16 +72,20 @@ function addButton(){
 
 function deleteTodo(index){
   const todos = get();
+  todos.forEach((value, index) => {
+    console.log("index", index)
+    console.log("value", value)
+    $(`#${index}`).click(function(event) {
+      console.log(event);
+      $(this).fadeOut(3000);
+    });
+  });
   todos.splice(index, 1);
   set(todos);
   showList();
 }
 
-$("i").click(function(){
-    $("#li").fadeOut();
-    $("#li").fadeOut("slow");
-    $("#li").fadeOut(3000);
-});
+
 
 function editTodo(index){
   const todos = get();
